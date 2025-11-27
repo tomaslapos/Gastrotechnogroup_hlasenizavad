@@ -3,22 +3,24 @@
  * Umožňuje offline funkčnost a rychlejší načítání
  */
 
-const CACHE_NAME = 'gtg-zavady-v1';
+const CACHE_NAME = 'gtg-zavady-v2';
 const ASSETS_TO_CACHE = [
-    '/',
-    '/index.html',
-    '/styles.css',
-    '/app.js',
-    '/manifest.json',
-    '/icon.svg'
+    './',
+    './index.html',
+    './styles.css',
+    './app.js',
+    './manifest.json',
+    './icon.svg',
+    './logo.svg',
+    './logo-white.svg'
 ];
 
-// Instalace Service Workeru
+// Instalace Service Workeru - vynutit okamžitou aktivaci
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then((cache) => {
-                console.log('Otevírám cache');
+                console.log('Otevírám cache v2');
                 return cache.addAll(ASSETS_TO_CACHE);
             })
             .then(() => {
@@ -27,14 +29,17 @@ self.addEventListener('install', (event) => {
     );
 });
 
-// Aktivace Service Workeru
+// Aktivace Service Workeru - vymazat staré cache
 self.addEventListener('activate', (event) => {
     event.waitUntil(
         caches.keys().then((cacheNames) => {
             return Promise.all(
                 cacheNames
                     .filter((cacheName) => cacheName !== CACHE_NAME)
-                    .map((cacheName) => caches.delete(cacheName))
+                    .map((cacheName) => {
+                        console.log('Mažu starou cache:', cacheName);
+                        return caches.delete(cacheName);
+                    })
             );
         }).then(() => {
             return self.clients.claim();
@@ -42,7 +47,7 @@ self.addEventListener('activate', (event) => {
     );
 });
 
-// Zachycení fetch požadavků
+// Zachycení fetch požadavků - network first strategie
 self.addEventListener('fetch', (event) => {
     // Ignorovat non-GET požadavky
     if (event.request.method !== 'GET') return;
@@ -53,43 +58,30 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
+    // Network first - zkusit síť, pak cache
     event.respondWith(
-        caches.match(event.request)
-            .then((cachedResponse) => {
-                // Vrátit cache pokud existuje
-                if (cachedResponse) {
-                    // Aktualizovat cache na pozadí
-                    event.waitUntil(
-                        fetch(event.request)
-                            .then((response) => {
-                                if (response.ok) {
-                                    caches.open(CACHE_NAME)
-                                        .then((cache) => cache.put(event.request, response));
-                                }
-                            })
-                            .catch(() => {})
-                    );
-                    return cachedResponse;
+        fetch(event.request)
+            .then((response) => {
+                // Cache novou odpověď
+                if (response.ok) {
+                    const responseClone = response.clone();
+                    caches.open(CACHE_NAME)
+                        .then((cache) => cache.put(event.request, responseClone));
                 }
-
-                // Jinak stáhnout ze sítě
-                return fetch(event.request)
-                    .then((response) => {
-                        // Cache nové zdroje
-                        if (response.ok) {
-                            const responseClone = response.clone();
-                            caches.open(CACHE_NAME)
-                                .then((cache) => cache.put(event.request, responseClone));
+                return response;
+            })
+            .catch(() => {
+                // Offline - použít cache
+                return caches.match(event.request)
+                    .then((cachedResponse) => {
+                        if (cachedResponse) {
+                            return cachedResponse;
                         }
-                        return response;
-                    })
-                    .catch(() => {
                         // Offline fallback pro navigaci
                         if (event.request.mode === 'navigate') {
-                            return caches.match('/index.html');
+                            return caches.match('./index.html');
                         }
                     });
             })
     );
 });
-
