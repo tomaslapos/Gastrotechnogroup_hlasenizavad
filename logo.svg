@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 150">
+  <!-- GASTRO s červeným O -->
+  <text x="10" y="48" font-family="Arial Black, Helvetica, sans-serif" font-size="42" font-weight="900" letter-spacing="1">
+    <tspan fill="#1a1a1a">GASTR</tspan><tspan fill="#e31e24">O</tspan>
+  </text>
+  
+  <!-- TECHNO se žlutým O -->
+  <text x="10" y="96" font-family="Arial Black, Helvetica, sans-serif" font-size="42" font-weight="900" letter-spacing="1">
+    <tspan fill="#1a1a1a">TECHN</tspan><tspan fill="#f7b500">O</tspan>
+  </text>
+  
+  <!-- GROUP se žlutým O -->
+  <text x="10" y="144" font-family="Arial Black, Helvetica, sans-serif" font-size="42" font-weight="900" letter-spacing="1">
+    <tspan fill="#1a1a1a">GR</tspan><tspan fill="#f7b500">O</tspan><tspan fill="#1a1a1a">UP</tspan>
+  </text>
+</svg>

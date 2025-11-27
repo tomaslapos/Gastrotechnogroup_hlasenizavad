@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background - červená -->
+  <rect width="512" height="512" fill="#e31e24" rx="100"/>
+  
+  <!-- GTG text -->
+  <g font-family="Arial Black, Arial, sans-serif" font-weight="900" text-anchor="middle">
+    <text x="256" y="200" font-size="120" fill="#ffffff">GTG</text>
+  </g>
+  
+  <!-- Colored O circles -->
+  <circle cx="400" cy="120" r="40" fill="none" stroke="#ffffff" stroke-width="14"/>
+  <circle cx="400" cy="380" r="40" fill="none" stroke="#f7b500" stroke-width="14"/>
+  
+  <!-- Subtitle -->
+  <text x="256" y="320" font-family="Arial, sans-serif" font-size="48" fill="#ffffff" text-anchor="middle" font-weight="700">ZÁVADY</text>
+  
+  <!-- Yellow accent bar -->
+  <rect x="140" y="370" width="232" height="8" rx="4" fill="#f7b500"/>
+</svg>

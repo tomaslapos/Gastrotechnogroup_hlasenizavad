@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#e31e24">
+    <meta name="description" content="Gastrotechno Group - Hlášení závad">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="GTG Závady">
+    
+    <title>Gastrotechno Group - Hlášení závad</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="icon.svg">
+    <link rel="apple-touch-icon" href="icon.svg">
+    
+    <!-- EmailJS pro odesílání emailů -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Hlavní obrazovka -->
+        <div id="home-screen" class="screen active">
+            <div class="hero-background">
+                <div class="overlay"></div>
+                <div class="pattern"></div>
+            </div>
+            
+            <header class="home-header">
+                <div class="logo-container">
+                    <div class="logo">
+                        <img src="logo.svg" alt="Gastrotechno Group" class="logo-image">
+                    </div>
+                </div>
+            </header>
+            
+            <main class="home-content">
+                <div class="welcome-card">
+                    <div class="welcome-icon">🔧</div>
+                    <div class="welcome-text">
+                        <h1>Hlášení závad</h1>
+                        <p>Rychle a jednoduše nahlaste závadu na vašem zařízení. Náš servisní tým se vám ozve co nejdříve.</p>
+                    </div>
+                    
+                    <button class="btn-primary btn-large btn-full" onclick="showScreen('step1')" style="margin-top: 1.5rem;">
+                        <span class="btn-icon">⚠️</span>
+                        <span class="btn-text">Nahlásit závadu</span>
+                        <span class="btn-arrow">→</span>
+                    </button>
+                </div>
+                
+                <div class="contact-card">
+                    <h3>Potřebujete pomoc?</h3>
+                    <div class="contact-info">
+                        <p>Servisní linka</p>
+                        <a href="tel:+420733383999">+420 733 383 999</a>
+                        <p style="margin-top: 0.5rem;">Email</p>
+                        <a href="mailto:helpdesk@gastrotechnogroup.cz">helpdesk@gastrotechnogroup.cz</a>
+                    </div>
+                </div>
+            </main>
+            
+            <footer class="home-footer">
+                <p>© 2025 Gastrotechno Group s.r.o.</p>
+            </footer>
+        </div>
+        
+        <!-- Krok 1: Kontaktní údaje -->
+        <div id="step1-screen" class="screen">
+            <header class="form-header">
+                <button class="btn-back" onclick="showScreen('home')">
+                    <span>←</span>
+                </button>
+                <div class="header-title">
+                    <h2>Kontaktní údaje</h2>
+                    <span class="step-indicator">Krok 1 z 2</span>
+                </div>
+                <div class="header-spacer"></div>
+            </header>
+            
+            <div class="progress-bar">
+                <div class="progress" style="width: 50%"></div>
+            </div>
+            
+            <main class="form-content">
+                <form id="step1-form" onsubmit="return validateStep1(event)">
+                    <div class="form-group">
+                        <label for="company">
+                            <span class="label-icon">🏢</span>
+                            Název firmy / provozovny *
+                        </label>
+                        <input type="text" id="company" name="company" required 
+                               placeholder="např. Restaurace U Zlatého lva">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">
+                            <span class="label-icon">📍</span>
+                            Adresa provozovny *
+                        </label>
+                        <input type="text" id="address" name="address" required
+                               placeholder="např. Hlavní 123, Praha 1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="name">
+                            <span class="label-icon">👤</span>
+                            Jméno a příjmení *
+                        </label>
+                        <input type="text" id="name" name="name" required
+                               placeholder="např. Jan Novák">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">
+                            <span class="label-icon">📱</span>
+                            Telefonní číslo *
+                        </label>
+                        <input type="tel" id="phone" name="phone" required
+                               placeholder="např. +420 123 456 789">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">
+                            <span class="label-icon">✉️</span>
+                            E-mail *
+                        </label>
+                        <input type="email" id="email" name="email" required
+                               placeholder="např. jan.novak@firma.cz">
+                    </div>
+                    
+                    <button type="submit" class="btn-primary btn-full">
+                        Pokračovat
+                        <span class="btn-arrow">→</span>
+                    </button>
+                </form>
+            </main>
+        </div>
+        
+        <!-- Krok 2: Údaje o závadě -->
+        <div id="step2-screen" class="screen">
+            <header class="form-header">
+                <button class="btn-back" onclick="showScreen('step1')">
+                    <span>←</span>
+                </button>
+                <div class="header-title">
+                    <h2>Údaje o závadě</h2>
+                    <span class="step-indicator">Krok 2 z 2</span>
+                </div>
+                <div class="header-spacer"></div>
+            </header>
+            
+            <div class="progress-bar">
+                <div class="progress" style="width: 100%"></div>
+            </div>
+            
+            <main class="form-content">
+                <form id="step2-form" onsubmit="return submitForm(event)">
+                    <div class="form-group">
+                        <label for="device">
+                            <span class="label-icon">🔧</span>
+                            Název zařízení *
+                        </label>
+                        <input type="text" id="device" name="device" required
+                               placeholder="např. Konvektomat Rational">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="serial">
+                            <span class="label-icon">🔢</span>
+                            Výrobní číslo *
+                        </label>
+                        <input type="text" id="serial" name="serial" required
+                               placeholder="např. SN123456789">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">
+                            <span class="label-icon">📝</span>
+                            Popis závady *
+                        </label>
+                        <textarea id="description" name="description" required rows="4"
+                                  placeholder="Popište co nejpodrobněji závadu, kdy nastala a za jakých okolností..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <span class="label-icon">📷</span>
+                            Fotodokumentace (volitelné)
+                        </label>
+                        <div class="photo-section">
+                            <div class="photo-buttons">
+                                <button type="button" class="btn-secondary" onclick="openCamera()">
+                                    <span>📸</span> Vyfotit
+                                </button>
+                                <button type="button" class="btn-secondary" onclick="openGallery()">
+                                    <span>🖼️</span> Z galerie
+                                </button>
+                            </div>
+                            <input type="file" id="camera-input" accept="image/*" capture="environment" 
+                                   onchange="handlePhotoSelect(event)" style="display: none" multiple>
+                            <input type="file" id="gallery-input" accept="image/*" 
+                                   onchange="handlePhotoSelect(event)" style="display: none" multiple>
+                            
+                            <div id="photo-preview" class="photo-preview"></div>
+                            <p class="photo-hint">Fotky budou automaticky zmenšeny na max. 1MB</p>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary btn-full btn-submit" id="submit-btn">
+                        <span class="btn-icon">📤</span>
+                        Odeslat hlášení
+                    </button>
+                </form>
+            </main>
+        </div>
+        
+        <!-- Potvrzení odeslání -->
+        <div id="success-screen" class="screen">
+            <div class="success-background">
+                <div class="overlay"></div>
+            </div>
+            
+            <main class="success-content">
+                <div class="success-icon">
+                    <div class="checkmark-circle">
+                        <span class="checkmark">✓</span>
+                    </div>
+                </div>
+                
+                <h1>Závada byla odeslána!</h1>
+                <p>Vaše hlášení bylo úspěšně odesláno na náš servisní tým.</p>
+                <p class="success-detail">Budeme vás kontaktovat co nejdříve.</p>
+                
+                <div class="success-summary" id="success-summary">
+                    <!-- Dynamicky vyplněno -->
+                </div>
+                
+                <button class="btn-primary btn-large" onclick="resetApp()">
+                    <span class="btn-icon">🏠</span>
+                    <span class="btn-text">Zpět na úvodní stránku</span>
+                </button>
+                
+                <div class="contact-info">
+                    <p>Máte dotazy? Volejte: <a href="tel:+420733383999">+420 733 383 999</a></p>
+                </div>
+            </main>
+        </div>
+        
+        <!-- Loading overlay -->
+        <div id="loading-overlay" class="loading-overlay">
+            <div class="loading-content">
+                <div class="spinner"></div>
+                <p>Odesílám hlášení...</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
+
