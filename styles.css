@@ -85,6 +85,8 @@ body {
     min-height: 100vh;
     min-height: 100dvh;
     position: relative;
+    border: 6px solid var(--red);
+    box-sizing: border-box;
 }
 
 /* Obrazovky */
@@ -121,36 +123,12 @@ body {
     background: var(--bg-main);
 }
 
-.hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 220px;
-    background: var(--red);
-    z-index: 0;
-    border-radius: 0 0 30px 30px;
-    overflow: hidden;
-}
-
-.hero-background .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
-}
-
-.hero-background .pattern {
-    display: none;
-}
-
 .home-header {
     position: relative;
     z-index: 1;
     padding: var(--spacing-lg) var(--spacing-md);
     padding-top: calc(var(--spacing-lg) + env(safe-area-inset-top, 0));
+    background: var(--bg-main);
 }
 
 .logo-container {
@@ -158,17 +136,24 @@ body {
     justify-content: center;
 }
 
-.logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--spacing-xs);
+.logo-link {
+    display: block;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
+}
+
+.logo-link:active {
+    transform: scale(0.98);
 }
 
 .logo-image {
-    width: 220px;
+    width: 280px;
+    max-width: 80vw;
     height: auto;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
 
 .home-content {
@@ -177,8 +162,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: var(--spacing-xl) var(--spacing-md);
-    padding-top: 50px;
+    padding: var(--spacing-lg) var(--spacing-md);
     position: relative;
     z-index: 1;
     gap: var(--spacing-lg);
@@ -754,12 +738,8 @@ body {
         font-size: 2rem;
     }
     
-    .hero-background {
-        height: 260px;
-    }
-    
     .logo-image {
-        max-width: 220px;
+        width: 320px;
     }
 }
 
@@ -779,6 +759,7 @@ body {
         border-radius: var(--border-radius-lg);
         overflow: hidden;
         box-shadow: var(--shadow-xl);
+        border: 6px solid var(--red);
     }
     
     .screen {
@@ -799,14 +780,9 @@ body {
     
     .home-content {
         gap: var(--spacing-md);
-        padding-top: 30px;
-    }
-    
-    .hero-background {
-        height: 180px;
     }
     
     .logo-image {
-        max-width: 150px;
+        width: 200px;
     }
 }
