@@ -33,7 +33,7 @@
             <header class="home-header">
                 <div class="logo-container">
                     <a href="https://www.gastrotechnogroup.cz" target="_blank" rel="noopener noreferrer" class="logo-link">
-                        <img src="logo-color.png" alt="Gastrotechno Group" class="logo-image">
+                        <img src="logo.svg" alt="Gastrotechno Group" class="logo-image">
                     </a>
                 </div>
             </header>
@@ -47,7 +47,6 @@
                     </div>
                     
                     <button class="btn-primary btn-large btn-full" onclick="showScreen('step1')" style="margin-top: 1.5rem;">
-                        <span class="btn-icon">⚠️</span>
                         <span class="btn-text">Nahlásit závadu</span>
                         <span class="btn-arrow">→</span>
                     </button>
@@ -90,7 +89,6 @@
                 <form id="step1-form" onsubmit="return validateStep1(event)">
                     <div class="form-group">
                         <label for="company">
-                            <span class="label-icon">🏢</span>
                             Název firmy / provozovny *
                         </label>
                         <input type="text" id="company" name="company" required 
@@ -99,7 +97,6 @@
                     
                     <div class="form-group">
                         <label for="address">
-                            <span class="label-icon">📍</span>
                             Adresa provozovny *
                         </label>
                         <input type="text" id="address" name="address" required
@@ -108,7 +105,6 @@
                     
                     <div class="form-group">
                         <label for="name">
-                            <span class="label-icon">👤</span>
                             Jméno a příjmení *
                         </label>
                         <input type="text" id="name" name="name" required
@@ -117,7 +113,6 @@
                     
                     <div class="form-group">
                         <label for="phone">
-                            <span class="label-icon">📱</span>
                             Telefonní číslo *
                         </label>
                         <input type="tel" id="phone" name="phone" required
@@ -126,7 +121,6 @@
                     
                     <div class="form-group">
                         <label for="email">
-                            <span class="label-icon">✉️</span>
                             E-mail *
                         </label>
                         <input type="email" id="email" name="email" required
@@ -162,7 +156,6 @@
                 <form id="step2-form" onsubmit="return submitForm(event)">
                     <div class="form-group">
                         <label for="device">
-                            <span class="label-icon">🔧</span>
                             Název zařízení *
                         </label>
                         <input type="text" id="device" name="device" required
@@ -171,7 +164,6 @@
                     
                     <div class="form-group">
                         <label for="serial">
-                            <span class="label-icon">🔢</span>
                             Výrobní číslo *
                         </label>
                         <input type="text" id="serial" name="serial" required
@@ -180,7 +172,6 @@
                     
                     <div class="form-group">
                         <label for="description">
-                            <span class="label-icon">📝</span>
                             Popis závady *
                         </label>
                         <textarea id="description" name="description" required rows="4"
@@ -189,7 +180,6 @@
                     
                     <div class="form-group">
                         <label>
-                            <span class="label-icon">📷</span>
                             Fotodokumentace (volitelné)
                         </label>
                         <div class="photo-section">
@@ -212,7 +202,6 @@
                     </div>
                     
                     <button type="submit" class="btn-primary btn-full btn-submit" id="submit-btn">
-                        <span class="btn-icon">📤</span>
                         Odeslat hlášení
                     </button>
                 </form>

@@ -1,14 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 100" width="165" height="100">
-  <!-- GASTRO -->
-  <text x="0" y="30" font-family="Arial Black, Helvetica, sans-serif" font-weight="900" font-size="28" fill="#1a1a1a">GASTRO</text>
-  
-  <!-- TECHNO - O je žluté -->
-  <text x="0" y="62" font-family="Arial Black, Helvetica, sans-serif" font-weight="900" font-size="28">
-    <tspan fill="#1a1a1a">TECHN</tspan><tspan fill="#f7b500">O</tspan>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" width="200" height="100">
+  <!-- GASTRO - O je červené -->
+  <text x="100" y="30" font-family="Arial Black, Helvetica, sans-serif" font-weight="900" font-size="28" text-anchor="middle" fill="#1a1a1a">
+    GASTR<tspan fill="#e31e24">O</tspan>
   </text>
   
-  <!-- GROUP - O je žluté -->
-  <text x="0" y="94" font-family="Arial Black, Helvetica, sans-serif" font-weight="900" font-size="28">
-    <tspan fill="#1a1a1a">GR</tspan><tspan fill="#f7b500">O</tspan><tspan fill="#1a1a1a">UP</tspan>
+  <!-- TECHNO - O je žluté -->
+  <text x="100" y="62" font-family="Arial Black, Helvetica, sans-serif" font-weight="900" font-size="28" text-anchor="middle" fill="#1a1a1a">
+    TECHN<tspan fill="#f7b500">O</tspan>
+  </text>
+  
+  <!-- GROUP - celé černé -->
+  <text x="100" y="94" font-family="Arial Black, Helvetica, sans-serif" font-weight="900" font-size="28" text-anchor="middle" fill="#1a1a1a">
+    GROUP
   </text>
 </svg>
