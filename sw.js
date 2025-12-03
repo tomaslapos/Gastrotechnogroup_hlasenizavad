@@ -3,7 +3,7 @@
  * Umožňuje offline funkčnost a rychlejší načítání
  */
 
-const CACHE_NAME = 'gtg-zavady-v3';
+const CACHE_NAME = 'gtg-zavady-v2024120301';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
@@ -11,6 +11,7 @@ const ASSETS_TO_CACHE = [
     './app.js',
     './manifest.json',
     './icon.svg',
+    './app-icon.svg',
     './logo.svg',
     './logo-white.svg'
 ];
@@ -20,7 +21,7 @@ self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then((cache) => {
-                console.log('Otevírám cache v3');
+                console.log('Otevírám novou cache');
                 return cache.addAll(ASSETS_TO_CACHE);
             })
             .then(() => {
