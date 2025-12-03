@@ -1,19 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <!-- Background - červená -->
-  <rect width="512" height="512" fill="#e31e24" rx="100"/>
+  <!-- Background - bílá s červeným orámováním -->
+  <rect width="512" height="512" fill="#ffffff" rx="80"/>
+  <rect x="16" y="16" width="480" height="480" fill="none" stroke="#e31e24" stroke-width="32" rx="64"/>
   
-  <!-- GTG text -->
-  <g font-family="Arial Black, Arial, sans-serif" font-weight="900" text-anchor="middle">
-    <text x="256" y="200" font-size="120" fill="#ffffff">GTG</text>
-  </g>
+  <!-- GASTRO - O je červené -->
+  <text x="256" y="185" font-family="Arial Black, Helvetica, sans-serif" font-weight="900" font-size="72" text-anchor="middle" fill="#1a1a1a">
+    GASTR<tspan fill="#e31e24">O</tspan>
+  </text>
   
-  <!-- Colored O circles -->
-  <circle cx="400" cy="120" r="40" fill="none" stroke="#ffffff" stroke-width="14"/>
-  <circle cx="400" cy="380" r="40" fill="none" stroke="#f7b500" stroke-width="14"/>
+  <!-- TECHNO - O je žluté -->
+  <text x="256" y="280" font-family="Arial Black, Helvetica, sans-serif" font-weight="900" font-size="72" text-anchor="middle" fill="#1a1a1a">
+    TECHN<tspan fill="#f7b500">O</tspan>
+  </text>
   
-  <!-- Subtitle -->
-  <text x="256" y="320" font-family="Arial, sans-serif" font-size="48" fill="#ffffff" text-anchor="middle" font-weight="700">ZÁVADY</text>
-  
-  <!-- Yellow accent bar -->
-  <rect x="140" y="370" width="232" height="8" rx="4" fill="#f7b500"/>
+  <!-- GROUP - celé černé -->
+  <text x="256" y="375" font-family="Arial Black, Helvetica, sans-serif" font-weight="900" font-size="72" text-anchor="middle" fill="#1a1a1a">
+    GROUP
+  </text>
 </svg>
